@@ -29,4 +29,20 @@ func main() {
 	numberOfTicketsRemaining -= numTickets
 	fmt.Println("Number of tickets left", numberOfTicketsRemaining)
 
+	// Arrays and slices
+	// var bookings = [50]string{"User1", "User2"} // Size of the array and datatype, can add some default values, else just add {} for empty.
+
+	// Alternative Syntax
+	// var bookings [50]string
+
+	// Dynamic array size -> Slice; abstraction of array.
+	var bookings []string
+	var firstName, lastName string
+	fmt.Println("Enter first and last name")
+	fmt.Scan(&firstName)
+	fmt.Scan(&lastName)
+	// bookings[0] = firstName + " " + lastName # This is for array syntax
+	bookings = append(bookings, firstName+" "+lastName)
+	fmt.Printf("First Name %v LastName %v Array Length %v", firstName, lastName, len(bookings))
+
 }
