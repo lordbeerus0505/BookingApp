@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strconv"
 	"strings"
 )
 
@@ -19,6 +20,34 @@ func main() {
 
 	// For loops:
 	// loops(&numberOfTicketsRemaining)
+
+	// Maps
+	maps(&numberOfTicketsRemaining)
+
+}
+
+func maps(numberOfTicketsRemaining *int) {
+	// Multiple key values for input
+	var firstName, lastName, email string
+	var tickets int
+	var bookings = make([]map[string]string, 0) // need to initialize size of the slice.
+
+	for *numberOfTicketsRemaining > 0 {
+		var userData = make(map[string]string) // key and value; make will create an empty object
+		fmt.Scan(&firstName)
+		fmt.Scan(&lastName)
+		fmt.Scan(&email)
+		fmt.Scan(&tickets)
+		*numberOfTicketsRemaining -= tickets
+		userData["firstName"] = firstName
+		userData["lastName"] = lastName
+		userData["email"] = email
+		// Convert the number of tickets from int to string
+		userData["tickets"] = strconv.FormatInt(int64(tickets), 10)
+		fmt.Println("The map is ", userData)
+		bookings = append(bookings, userData)
+	}
+	fmt.Println(bookings)
 
 }
 
