@@ -22,8 +22,41 @@ func main() {
 	// loops(&numberOfTicketsRemaining)
 
 	// Maps
-	maps(&numberOfTicketsRemaining)
+	// maps(&numberOfTicketsRemaining)
 
+	// Structures
+	structs(&numberOfTicketsRemaining)
+
+}
+
+type users struct { // type used to create a custom type
+	firstName       string
+	lastName        string
+	email           string
+	numberOfTickets int
+}
+
+func structs(numberOfTicketsRemaining *int) {
+	var bookings = make([]users, 0)
+	var firstName, lastName, email string
+	var tickets int
+	for *numberOfTicketsRemaining > 0 {
+
+		fmt.Scan(&firstName)
+		fmt.Scan(&lastName)
+		fmt.Scan(&email)
+		fmt.Scan(&tickets)
+		*numberOfTicketsRemaining -= tickets
+		var userData = users{
+			firstName:       firstName,
+			lastName:        lastName,
+			email:           email,
+			numberOfTickets: tickets,
+		}
+		fmt.Println("The map is ", userData)
+		bookings = append(bookings, userData)
+	}
+	fmt.Println(bookings)
 }
 
 func maps(numberOfTicketsRemaining *int) {
