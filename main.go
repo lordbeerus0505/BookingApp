@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 // This is the entry point for the file. Need to put things under a function
 func main() {
@@ -37,12 +40,28 @@ func main() {
 
 	// Dynamic array size -> Slice; abstraction of array.
 	var bookings []string
-	var firstName, lastName string
-	fmt.Println("Enter first and last name")
-	fmt.Scan(&firstName)
-	fmt.Scan(&lastName)
-	// bookings[0] = firstName + " " + lastName # This is for array syntax
-	bookings = append(bookings, firstName+" "+lastName)
-	fmt.Printf("First Name %v LastName %v Array Length %v", firstName, lastName, len(bookings))
+	// Can run these infinite times with a loop
+	for {
+		var firstName, lastName string
+		fmt.Println("Enter first and last name")
+		fmt.Scan(&firstName)
+		fmt.Scan(&lastName)
+		// bookings[0] = firstName + " " + lastName # This is for array syntax
+		bookings = append(bookings, firstName+" "+lastName)
+		fmt.Printf("First Name %v LastName %v Array Length %v\n", firstName, lastName, len(bookings))
+		// Using a for-each
+		var firstNames []string
+		for _, val := range bookings { // _ used for blank identifiers that we dont want to use.
+			var name = strings.Fields(val) // slices into first and last name based on space
+			firstNames = append(firstNames, name[0])
+		}
+		fmt.Println("The booked users so far are", firstNames)
 
+		// Now should terminate the application if all tickets sold
+		if numberOfTicketsRemaining == 0 {
+			fmt.Println("All tickets sold out")
+			break
+		}
+		numberOfTicketsRemaining -= 1
+	}
 }
